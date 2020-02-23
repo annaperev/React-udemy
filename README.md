@@ -94,5 +94,168 @@ const myFuck=()=>{
 ```
 
 ### Exprort & Import (Modules)
+в файле person.js
+```javascript
+export default person
+```
+default значит, если импортируем из файла person.js то по умолчанию это будет компонент person
+
+в файле utility.js
+```javascript
+export const clean = () => {...}
+export const baseData = 10
+```
+
+в файле app.js
+```javascript
+import person from './person.js'        // person тут прост алиас, импортируется дефолтный компонент
+import prs from './person.js'           // тоже самое, только алиас prs
+import {baseDate} from './ulitity.js'   //в фигурных скобках имя импорта
+import {clean as cln} fsom './utility.js'   //cln тут алиас
+или
+import * as all fsom './utility.js' - импортим все из utility.js, обозвав это 'all'
+```
+
+#### Классы
+- шаблоны для объектов
+класс имеет свойства (переменный класса) и методы (функции класса)
+
+```javascript
+class Person {
+	name = 'Max'
+	call = () =>{...}
+
+}
+```
+
+инициализация
+```javascript
+const myPerson = new Person ()
+	myPerson.call()
+	console.log(myPerson.name)
+```
+
+поддерживается наследование
+
+```javascript
+class Person extends Master
+```
+
+в песочнице
+```javascript
+class Person {
+	constructor(){
+		this.name = 'Max'
+	}
+	
+	printMyName(){
+		console.log(this.name)
+	}
+}
+
+const person = new Person;
+person.printMyName();
+```
+
+если расширяем класс и используем конструктор, то обязательно нужно вызвать конструктор родителя вначале, иначе ругнётся.
+
+ES6
+```javascript
+constructor(){
+	this.myProperty = 'value'
+}
+```
+
+ES7
+```javascript
+myProperty = 'value'
+```
+
+ES6
+```javascript
+myMethod(){...}
+```
+
+ES7
+```javascript
+myMethod = ()=>{...}
+```
+
+метод - как переменная, в которой хранится функция
+
+
+#### Spread and Rest Operator
+... 
+
+Spread - для разделения элементов массива или свойств объекта
+
+```JS
+const newArray = [...oldArray,1,2]  // перед массивом берут все элементы из старого массива и кладут их в новый, далее добавляются элементы 1 и 2 
+const newObject = {..Object, newProp: 5}  //
+```
+
+Rest - для склеивания списка аргументов функции в массив
+```js
+function sortArgs(...args){
+    return args.sort()
+}
+```
+sortArgs получает неограниченное кол-во аргументов, с ... мы записали только 1 аргумент args, но функция может принять больше, чем 1 аргумент и ... склеит их в массив
+
+
+
+Пример Spread в песочницке jsbin.com
+```js
+const number = [1,2,3];
+const newNumbers = [...numbers,4];
+const newNumbers2 = [numbers, 4]
+
+console.log(newNumbers); // [1,2,3,4]
+console.log(newNumbers2); //[[1,2,3],4]
+```
+
+```js
+const person = (
+	name: 'Max'
+);
+
+const newPerson = {
+	...person,
+	age: 28
+}
+
+consloe.log(newPerson);// [object Object]{
+						// age:28
+						//name: "Max"
+						//}
+```
+
+Примеры Rest в песочнице
+```JS
+const filter = (...args) => {
+	return args.filter(el => el === 1);// === сравнение типа и значения
+
+console.log(filter()1,2,3)); // [1]
+}
+```
+
+#### Destructuring
+Spread берет все элементы, destructuring - один
+
+Array destructuring
+```js
+[a,b] = ['Hello','Max'];
+console.log(a);// Hello
+console.log(b); //Max
+```
+
+Object destructuring
+```js
+(name) = {name: 'Max', age: 28}
+console.log(name);//Max
+console.log(age);//underfined
+```
+
+
 
 
