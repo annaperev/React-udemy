@@ -4,7 +4,7 @@
 
 [Next-Generation JavaScript](#next-generation-javascript)
 
-[Understanding the Base Features & Syntax](#Understanding the Base Features & Syntax)
+[Understanding the Base Features & Syntax](#understanding-the-base-features-&-syntax)
 
 ## Getting Started
 
