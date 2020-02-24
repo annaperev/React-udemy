@@ -240,23 +240,49 @@ console.log(filter()1,2,3)); // [1]
 }
 ```
 
-#### Destructuring
-Spread берет все элементы, destructuring - один
+### Destructuring
 
-Array destructuring
+позволяет извлекать элементы массива и свойств объекта и хранить в переменных, звучит похоже на spread, но не совсем, разница в том, что каждый хранится в своей переменных
+
+Array Destructuring
 ```js
-[a,b] = ['Hello','Max'];
-console.log(a);// Hello
-console.log(b); //Max
+[a,b] = ['Hello','Max']
+console.log(a)//Hello
+console.log(b)//Max
 ```
-
-Object destructuring
+Object Destructuring
 ```js
-(name) = {name: 'Max', age: 28}
-console.log(name);//Max
-console.log(age);//underfined
+{name} = {name:'Max', age:28}
+console.log(name)//Max
+console.log(age)//undefined
 ```
+ в песочнице:
+ ```js
+ const numbers = [1,2,3];
+ [num1,num2]=numbers;
+ console.log(num1,num2) //1,2
+ ```
 
+ ```js
+ const numbers = [1,2,3];
+ [num1,,num3]=numbers;
+ console.log(num1,num3) //1,3
+ ```
 
+ #### Reference and primative types
 
+ ```js
+ const number = 1;      //примитивный
+ const num2 = number;   //создает реальную копию number
 
+ console.log(num2);
+
+ const person = { //const person - указатель на место в памяти, где хранится объект person
+     name: 'Max'
+ };
+ const secondPerson = person;//копируется указатель, а не объект, теперь const person and secondPerson ссылаются на один объект
+ person.name = 'Manu'
+ console.log(secondPerson);//Menu
+ ```
+
+  
