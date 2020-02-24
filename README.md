@@ -4,6 +4,8 @@
 
 [Next-Generation JavaScript](#next-generation-javascript)
 
+[Understanding the Base Features & Syntax](#Understanding the Base Features & Syntax)
+
 ## Getting Started
 
 ### Intro
@@ -271,6 +273,7 @@ console.log(age)//undefined
 
  #### Reference and primative types
 
+Объекты и массивы - ссылочные типы
  ```js
  const number = 1;      //примитивный
  const num2 = number;   //создает реальную копию number
@@ -284,5 +287,7 @@ console.log(age)//undefined
  person.name = 'Manu'
  console.log(secondPerson);//Menu
  ```
+ 
+ ## Understanding the Base Features & Syntax
 
   
