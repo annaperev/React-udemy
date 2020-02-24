@@ -4,7 +4,7 @@
 
 [Next-Generation JavaScript](#next-generation-javascript)
 
-[Understanding the Base Features & Syntax](#understanding-the-base-features-&-syntax)
+[Understanding the Base Features & Syntax](#understanding-the-base-features-and-syntax)
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ react-dom - для рендеринга компонент react в real Dom
 Babel - тулза, которая компилирует next-generation js code в код, который запустится в браузере
 
 
-#### Компонент
+### Компонент
 
 Компонент - это функция, возвращает код, который рендерится в DOM-е
 Возвращаемый код, то что в скобках return () ,похож на HTML разметку, это **JSX** синтакс, сахар.
@@ -119,7 +119,7 @@ import {clean as cln} fsom './utility.js'   //cln тут алиас
 import * as all fsom './utility.js' - импортим все из utility.js, обозвав это 'all'
 ```
 
-#### Классы
+### Классы
 - шаблоны для объектов
 класс имеет свойства (переменный класса) и методы (функции класса)
 
@@ -187,7 +187,7 @@ myMethod = ()=>{...}
 метод - как переменная, в которой хранится функция
 
 
-#### Spread and Rest Operator
+### Spread and Rest Operator
 ... 
 
 Spread - для разделения элементов массива или свойств объекта
@@ -271,7 +271,7 @@ console.log(age)//undefined
  console.log(num1,num3) //1,3
  ```
 
- #### Reference and primative types
+ ### Reference and primative types
 
 Объекты и массивы - ссылочные типы
  ```js
@@ -288,6 +288,6 @@ console.log(age)//undefined
  console.log(secondPerson);//Menu
  ```
  
- ## Understanding the Base Features & Syntax
+ ## Understanding the Base Features and Syntax
 
   
