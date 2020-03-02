@@ -303,7 +303,7 @@ console.log(age)//undefined
  * npx create-react-app react-guide-app - создали дефолтное приложение в папке react-guide-app
  * npm start - запустили проект, то есть стартовали development server, открывается новая закладка в браузере http://localhost:3000/
 
-
+### Folder Structure
 из чего состоит дефолтное приложение:
  * yarn.lock и package-lock.json- можно игнорить, в них фиксируются версии используемых зависимостей
  * package.json - зависимости определены тут, create-react-app создало 3 зависимости, 
@@ -328,9 +328,11 @@ console.log(age)//undefined
 ReactDOM.render(<App />, document.getElementById('root'));
 //вместо компонента мы можем рендерить html элементы 
 ReactDOM.render(<h1>Test</h1>, document.getElementById('root'));
-//можем рендерить сколько угодно html компонент, только это не будет react приложением, обычно принято рендерить 1 компонент из файла App.js
+//можем рендерить сколько угодно html компонент, только это не будет react приложением, 
+//обычно принято рендерить 1 компонент из файла App.js
 ```
 
+### Component Basics
 из чего состоит React компонент
  * class App extends Component {}
 	Component тут из библиотеки React, которую заимпортили выше.
@@ -375,20 +377,25 @@ ReactDOM.render(<h1>Test</h1>, document.getElementById('root'));
   ```
 
 
-  ### Create Functioncal Component
+### 32 Create Functioncal Component
 
-  при импорте имя компонента выбираем сами, но обязательно с большой буквы.
-  ```js
-  import Person from './Person/Person'
-  ```
-  
-  
- props - объект, дающий доступ к атрибутам, которым мы передали в наш компонент.
+при импорте имя компонента выбираем сами, но обязательно с большой буквы.
+ ```js
+ import Person from './Person/Person'
+ ```
 
-специальное свойство  children - зарезервированное слово, относится ко всему, что между открывающим и закрываюзим тегом компонента
 
+
+### 36 Working with Props  
+* props - объект, дающий доступ к атрибутам, которым мы передали в наш компонент.
+
+### 37 "Children" Prop
+* специальное свойство  children - зарезервированное слово, относится ко всему, что между открывающим и закрываюзим тегом компонента
+
+
+```js
 <Person name="Manu" age="29" >My Hobbies: Racing</Person>
-
+```
 в данном случае это: "My Hobbies: Racing"
 это может быть не только текст, может быть html
 
