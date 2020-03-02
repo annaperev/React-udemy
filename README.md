@@ -290,6 +290,7 @@ console.log(age)//undefined
  
  ## Understanding the Base Features and Syntax
 
+### The Build Workflow
  Что нужно для приложения:
  * npm & yarn - dependency manager tool
  * webpack - упаковщик (bundler), мы пишем код в разных файлах, а в конце упаковщик как-то склеивает их, потому что некоторые браузеры, особенно старые не поддерживают раздельные файлы
