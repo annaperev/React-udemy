@@ -1,4 +1,4 @@
-"# React-udemy" 
+# React-udemy
 
 [Getting Started](#getting-started)
 
