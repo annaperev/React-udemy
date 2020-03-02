@@ -4,124 +4,142 @@
 
 [Next-Generation JavaScript](#next-generation-javascript)
 
-[Understanding the Base Features & Syntax](#understanding-the-base-features-and-syntax)
+[React Basics & Working With Components](#React-Basics-and-Working-With-Components)
 
-## Getting Started
+[React State & Working with Events](#React-State-&-Working-with-Events)
 
-### Intro
-2020.02.04. Видео 1-5
+## **Getting Started**
 
-React - js библиотека
+### **Intro**
+
+**React** - js библиотека
 React приложения запускаются в браузере, позволяет строить странички по частям, компонентам, которые легко переиспользовать.
 Reactjs.org
 http://codepen.io/ - песочница
 react-dom - для рендеринга компонент react в real Dom
 Babel - тулза, которая компилирует next-generation js code в код, который запустится в браузере
 
+### **Компонент**
 
-### Компонент
-
-Компонент - это функция, возвращает код, который рендерится в DOM-е
+**Компонент** - это функция, возвращает код, который рендерится в DOM-е
 Возвращаемый код, то что в скобках return () ,похож на HTML разметку, это **JSX** синтакс, сахар.
 Babel преобразует **JSX** в JS.
 Имена функций с большой буквы
 
-```javascript
-ReactDOM.render(<Person/>, document.querySelector('#p1'));
+```js
+ReactDOM.render(<Person />, document.querySelector('#p1'));
 ```
+
 эта запись обозначает, что компонент Person я хочу срендерить в место в HTML страничке, где находитcя p1.
 
 Чтобы можно было динамически подставлять данные в компонент:
- * добавить в компонент параметр, назовём его props
- * внутри компонента использовать {props.name}
- * при рендере задать свойства: 
-```javascript 
- ReactDOM.render(<Person name="Max" age="28"/>, document.querySelector('#p1'));
- ```
+
+- добавить в компонент параметр, назовём его props
+- внутри компонента использовать {props.name}
+- при рендере задать свойства:
+
+```javascript
+ReactDOM.render(<Person name="Max" age="28" />, document.querySelector('#p1'));
+```
 
 чтобы не вызывать ReactDOM.render много раз:
- * создали переменную app;
- * присвоили ей div с Person (несколькими разными)
- * в HTML файле оставили только <div id="app"></div>
- * ReactDOM.render(app, document.querySelector('#app'));
 
-2020.02.05. Видео 6-10
+- создали переменную app;
+- присвоили ей div с Person (несколькими разными)
+- в HTML файле оставили только <div id="app"></div>
+- ReactDOM.render(app, document.querySelector('#app'));
+
+  2020.02.05. Видео 6-10
 
 Ещё причины использовать React:
- * в большом js проекте сложно управлять UI state-ами, наверняка придется вручную менять способы обращения к элементам, с React всё динамически и изи
- * позволяет сфокусироваться на бизнес-логике приложения, а не на том как это реализовать
 
-Альтернативы React-а: 
- * Angular
- * Vue
- * JQuery - не совсем альтернатива, JQuary про traversing the DOM и про обращение к элементам в DOM
+- в большом js проекте сложно управлять UI state-ами, наверняка придется вручную менять способы обращения к элементам, с React всё динамически и изи
+- позволяет сфокусироваться на бизнес-логике приложения, а не на том как это реализовать
 
-2 типа приложений: 
- * Single page application  - юзер заходит на страничку, мы передает только 1 html страничку сразу, а дальше всё разруливается js(React) на стороне юзера, не нужно ходить на сервер и обновлять страницы. Вся страница состоит из компонентов управляется root компонентом
- * Multi page application - когда разные странички имеют свой ulr каждая, каждая подружается отдельно 
-страницы состоят из html и css, некоторые виджеты могут быть сделаны с помощью react. Страница целиком не управляется React-ом, виджеты не знают друг про друга.
+Альтернативы React-а:
+
+- Angular
+- Vue
+- JQuery - не совсем альтернатива, JQuary про traversing the DOM и про обращение к элементам в DOM
+
+2 типа приложений:
+
+- Single page application - юзер заходит на страничку, мы передает только 1 html страничку сразу, а дальше всё разруливается js(React) на стороне юзера, не нужно ходить на сервер и обновлять страницы. Вся страница состоит из компонентов управляется root компонентом
+- Multi page application - когда разные странички имеют свой ulr каждая, каждая подружается отдельно
+  страницы состоят из html и css, некоторые виджеты могут быть сделаны с помощью react. Страница целиком не управляется React-ом, виджеты не знают друг про друга.
 
 на курсе делаем single page application => имеем один ReactDOM.render вызов
 
+## **Next-Generation JavaScript**
 
-## Next-Generation JavaScript
-2020.02.05. Видео 12-
+### **let & const**
 
-### let & const
+- var - create variables in js, we don't encourage to use it
+- let - modern var
+- const - can't change it, if you try to reassign you'll get an error
 
- * var - способ задавать переменный в js, 
- * let -те же переменные, как var
- * const - неизменяемые, при попытке изменить такую переменную, будет ошибка
+http://jsbin.com/ - sandbox
 
- http://jsbin.com/ - ещё песочница
+### **Arrow Functions**
 
-### Arrow Functions
+Normal js functions:
 
- обычные js функции выглядят так:
- ```javascript
- function myFunc(){
-     ...
- }
- ```
-Arrow functions выглядят так:
 ```javascript
-const myFuck=()=>{
+function myFunc(){
     ...
 }
 ```
- * arrow functions решает проблемки с ключевым словом this. This внутри arrow функций всегда содержит её контекст и не изменит его в runtime.
- * c 1 аргументом круглые скобки можно опустить, с 0 и больше 1 скобки обязательны.
- * если тело функции состорит из 1 строки return, можно опустить фигурные скобки и само слово return
- ```javascript
- const multiply = number => number*2;
-```
 
-### Exprort & Import (Modules)
-в файле person.js
+Arrow functions:
+
 ```javascript
-export default person
+const myFuc=()=>{
+    ...
+}
 ```
-default значит, если импортируем из файла person.js то по умолчанию это будет компонент person
 
-в файле utility.js
+- arrow functions решает проблемки с ключевым словом this. This внутри arrow функций всегда содержит её контекст и не изменит его в runtime.
+- c 1 аргументом круглые скобки можно опустить, с 0 и больше 1 скобки обязательны.
+- если тело функции состорит из 1 строки return, можно опустить фигурные скобки и само слово return
+
+```javascript
+const multiply = (number) => number * 2;
+```
+
+### **Exprort & Import (Modules)**
+
+Examples
+
+person.js file:
+
+```javascript
+export default person;
+```
+
+'default' means while importing from file person.js ti would be this component by default
+
+utility.js file:
+
 ```javascript
 export const clean = () => {...}
 export const baseData = 10
 ```
 
-в файле app.js
+app.js file:
+
 ```javascript
-import person from './person.js'        // person тут прост алиас, импортируется дефолтный компонент
-import prs from './person.js'           // тоже самое, только алиас prs
-import {baseDate} from './ulitity.js'   //в фигурных скобках имя импорта
-import {clean as cln} fsom './utility.js'   //cln тут алиас
-или
-import * as all fsom './utility.js' - импортим все из utility.js, обозвав это 'all'
+import person from './person.js'        // person is just alias, we import default
+import prs from './person.js'           // it's the same lime with alias prs
+import { baseDate } from './ulitity.js'   // inside P{} the name of what we import
+import {clean as cln} fsom './utility.js'   //cln is alias
+// or
+import * as all fsom './utility.js' // we do import everything from utility.js with allias 'all'
 ```
 
-### Классы
-- шаблоны для объектов
-класс имеет свойства (переменный класса) и методы (функции класса)
+### **Classes**
+
+- templates for objects
+- class has properties (class variables) and methods (class functions)
 
 ```javascript
 class Person {
@@ -131,110 +149,144 @@ class Person {
 }
 ```
 
-инициализация
-```javascript
-const myPerson = new Person ()
-	myPerson.call()
-	console.log(myPerson.name)
-```
-
-поддерживается наследование
+initialisation:
 
 ```javascript
-class Person extends Master
+const myPerson = new Person();
+myPerson.call();
+console.log(myPerson.name);
 ```
 
-в песочнице
+support inheritance:
+
+```javascript
+class Person extends Human
+```
+
+example:
+
 ```javascript
 class Person {
-	constructor(){
-		this.name = 'Max'
-	}
-	
-	printMyName(){
-		console.log(this.name)
-	}
+  constructor() {
+    this.name = 'Max';
+  }
+
+  printMyName() {
+    console.log(this.name);
+  }
 }
 
-const person = new Person;
+const person = new Person();
 person.printMyName();
 ```
 
-если расширяем класс и используем конструктор, то обязательно нужно вызвать конструктор родителя вначале, иначе ругнётся.
+If we extend the class and we use a constructor then we must call super constructor in the derived class:
 
-ES6
+```javascript
+class Human {
+  constructor() {
+    this.gender = 'male';
+  }
+
+  printGender() {
+    console.log(this.gender);
+  }
+}
+
+class Person extends Human {
+  constructor() {
+    super();
+    this.name = 'Max';
+  }
+
+  printMyName() {
+    console.log(this.name);
+  }
+}
+
+const person = new Person();
+person.printMyName();
+person.printGender();
+```
+
+ES6 variable:
+
 ```javascript
 constructor(){
 	this.myProperty = 'value'
 }
 ```
 
-ES7
+ES7 variable:
+
 ```javascript
-myProperty = 'value'
+myProperty = 'value';
 ```
 
-ES6
+ES6 method:
+
 ```javascript
 myMethod(){...}
 ```
 
-ES7
-```javascript
+ES7 method:
+
+```js
 myMethod = ()=>{...}
 ```
 
-метод - как переменная, в которой хранится функция
+method - is like a variable which store function
 
+### **Spread and Rest Operator**
 
-### Spread and Rest Operator
-... 
+Both are ...
 
-Spread - для разделения элементов массива или свойств объекта
+- Spread - tp split up array elements OR object property
 
-```JS
-const newArray = [...oldArray,1,2]  // перед массивом берут все элементы из старого массива и кладут их в новый, далее добавляются элементы 1 и 2 
-const newObject = {..Object, newProp: 5}  //
+```js
+const newArray = [...oldArray,1,2]  // we take all elements from oldArray and add elements 1, 2 and put all these to newArray
+const newObject = {..oldObject, newProp: 5}  // we create a new object with {} and we pull all properties from oldObject andtheir values and add the as key-value pairs to newObject. If oldObject had newProp in newObject it would be overwriten with newProp: 5
 ```
 
-Rest - для склеивания списка аргументов функции в массив
+- Rest - for merge a list of function arguments into array
+
 ```js
-function sortArgs(...args){
-    return args.sort()
+function sortArgs(...args) {
+  return args.sort();
 }
 ```
+
 sortArgs получает неограниченное кол-во аргументов, с ... мы записали только 1 аргумент args, но функция может принять больше, чем 1 аргумент и ... склеит их в массив
 
+Examples Spread in sanbox jsbin.com:
 
-
-Пример Spread в песочницке jsbin.com
 ```js
-const number = [1,2,3];
-const newNumbers = [...numbers,4];
-const newNumbers2 = [numbers, 4]
+const number = [1, 2, 3];
+const newNumbers = [...numbers, 4];
+const newNumbers2 = [numbers, 4];
 
 console.log(newNumbers); // [1,2,3,4]
 console.log(newNumbers2); //[[1,2,3],4]
 ```
 
 ```js
-const person = (
-	name: 'Max'
-);
+const person = (name: 'Max');
 
 const newPerson = {
-	...person,
-	age: 28
-}
+  ...person,
+  age: 28,
+};
 
-consloe.log(newPerson);// [object Object]{
-						// age:28
-						//name: "Max"
-						//}
+consloe.log(newPerson);
+// [object Object]{
+// age:28
+//name: "Max"
+//}
 ```
 
-Примеры Rest в песочнице
-```JS
+Examples Rest in sandbox:
+
+```js
 const filter = (...args) => {
 	return args.filter(el => el === 1);// === сравнение типа и значения
 
@@ -242,172 +294,271 @@ console.log(filter()1,2,3)); // [1]
 }
 ```
 
-### Destructuring
+### **Destructuring**
 
-позволяет извлекать элементы массива и свойств объекта и хранить в переменных, звучит похоже на spread, но не совсем, разница в том, что каждый хранится в своей переменных
+**Destructuring** - allows extract array elements or object properties and store them in variables. It sound like Spread operator, but Spread takes out all elements and all properties and distribute them in new array or object, wherever Destructuring allows you to pull out singleelement or property and store them in variables.
 
-Array Destructuring
+Array Destructuring:
+
 ```js
-[a,b] = ['Hello','Max']
-console.log(a)//Hello
-console.log(b)//Max
+[a, b] = ['Hello', 'Max'];
+console.log(a); //Hello
+console.log(b); //Max
 ```
-Object Destructuring
+
+Object Destructuring:
+
 ```js
 {name} = {name:'Max', age:28}
 console.log(name)//Max
 console.log(age)//undefined
 ```
- в песочнице:
- ```js
- const numbers = [1,2,3];
- [num1,num2]=numbers;
- console.log(num1,num2) //1,2
- ```
 
- ```js
- const numbers = [1,2,3];
- [num1,,num3]=numbers;
- console.log(num1,num3) //1,3
- ```
+examples for sandbox:
 
- ### Reference and primative types
+```js
+const numbers = [1, 2, 3];
+[num1, num2] = numbers;
+console.log(num1, num2); //1,2
+```
 
-Объекты и массивы - ссылочные типы
- ```js
- const number = 1;      //примитивный
- const num2 = number;   //создает реальную копию number
+```js
+const numbers = [1, 2, 3];
+[num1, , num3] = numbers;
+console.log(num1, num3); //1,3
+```
 
- console.log(num2);
+### **Reference and primitive types**
 
- const person = { //const person - указатель на место в памяти, где хранится объект person
-     name: 'Max'
- };
- const secondPerson = person;//копируется указатель, а не объект, теперь const person and secondPerson ссылаются на один объект
- person.name = 'Manu'
- console.log(secondPerson);//Menu
- ```
- 
- ## Understanding the Base Features and Syntax
+Objects and arrays - reference types
 
-### The Build Workflow
- Что нужно для приложения:
- * npm & yarn - dependency manager tool
- * webpack - упаковщик (bundler), мы пишем код в разных файлах, а в конце упаковщик как-то склеивает их, потому что некоторые браузеры, особенно старые не поддерживают раздельные файлы
- * babel - компилятор, переводит из next-gen-js to old one.
- * development server - тоже что и web-server, но локальный
+```js
+const number = 1; //primitive
+const num2 = number; //create a real copy of number
 
-все эти штуки устанавливаются одной командой. Google "create react app". В facebook git страничке есть инструкция.
- * скачали npm с сайте
- * nmp install - установили npm
- * npx create-react-app react-guide-app - создали дефолтное приложение в папке react-guide-app
- * npm start - запустили проект, то есть стартовали development server, открывается новая закладка в браузере http://localhost:3000/
+console.log(num2);
+```
 
+```js
+const person = {
+  //const person - is a pointer to a place in the memory, where object person is stored
+  name: 'Max',
+};
+const secondPerson = person; //it copy the pointer, not the object, now const person and secondPerson refer to the sameobject
+person.name = 'Manu';
+console.log(secondPerson); //Manu
+```
+
+```js
+const person = {
+  name: 'Max',
+};
+const secondPerson = {
+  ...person,
+}; //it creates a new object with copied values
+person.name = 'Manu';
+console.log(secondPerson); //Max
+```
+
+### **Array functions**
+
+```js
+const numbers = [1, 2, 3];
+
+const doubleNumbers = numbers.map((arg) => {
+  return arg * 2;
+});
+
+console.log(numbers); // [1, 2, 3]
+console.log(doubleNumbers); //[2, 4, 6]
+```
+
+## **React Basics and Working With Components**
+
+### **Component**
+
+**React** - JavaScropt library for building userinterfaces.
+
+**Component** - combination og HTML code, CSS code for styling and js code for some logic. It's a special kind of js function.
+
+- reusability
+- separation of concerns
+
+### **Declarative approach**
+
+You will not tell React that a certain HTML element should be created and inserted in a specific place on a UI as you would be doing it with vanila JS. With React we will always define the desired end state, the target state and under wich condition which state should be used and then React will do the rest under the hood.
+
+### **Creating a new React Project**
+
+**Create React App** - tool to create react projects which preconfigured project folders. It also gives a nice development invironment with a development web server which allows you to preview the application locally on your machine.
+https://github.com/facebook/create-react-app
+
+```
+npx create-react-app my-app
+cd my-app
+npm start
+```
+
+to execute those steps we need to visit https://nodejs.org
+NodeJS - runtime for JS, which allows to run js code outside of the browser
+
+What do we need:
+
+- npm & yarn - dependency manager tool
+- webpack - упаковщик (bundler), мы пишем код в разных файлах, а в конце упаковщик как-то склеивает их, потому что некоторые браузеры, особенно старые не поддерживают раздельные файлы
+- babel - compiler, translate next-gen-js to old one.
+- development server - the same is web-server, but local
+
+All these tools we install with one command.
+Steps:
+
+- скачали npm с сайте
+- nmp install - установили npm
+- Google "create react app". In facebook git there is an instruction.
+- npx create-react-app react-complete-guide - создали дефолтное приложение в папке react-complete-guide
+- npm start - запустили проект, то есть стартовали development server, открывается новая закладка в браузере http://localhost:3000/
+
+- go to project folder and run
+- > cd react-complete-guide
+- install all third party libraries
+- > npm install
+
+### **Folder Structure**
 
 из чего состоит дефолтное приложение:
- * yarn.lock и package-lock.json- можно игнорить, в них фиксируются версии используемых зависимостей
- * package.json - зависимости определены тут, create-react-app создало 3 зависимости, 
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0" 
-	так же тут определены скрипты, которые можно запускать так: npm run <Имя скрипта>
-	например npm run start Или npm start, эта команда запустит команду "react-scripts start", которая  стартует development server, скомпилирует код, соптимизирует код
-	когда будем готовы деплоить приложение, запустим mpn built, не запуская development server, но вместо этого получим оптимизированный код в папке, на этом этапе все происходит в памяти, не увидим скомпилированный код.
- * папка node_modules - хранит все зависимости и подзавиисмости.
- * папка public - 
- 	index.html, других html страничек не будет, куда будет вставлять 
-	manifest.json - метаданные о нашем приложении
- * папка source - 
-	index.js - имеет доступ к root элементу нашего DOM из html файла, и рендерит приложение с помощью метода render(), рендерит элемент App, который импортируем из файла ./App, расширение *.js можно опускать
-	App.js - тут наш единственный на данный момент компонент.
-	App.css - стили
-	serviceWorker.js - делает прекэш наших скриптов
-	App.test.js -позволяет создавать тесты для приложения
+
+- yarn.lock и package-lock.json- можно игнорить, в них фиксируются версии используемых зависимостей
+- package.json - holds all dependencies. "create-react-app" created several dependencies:
+  - "react": "^16.12.0",
+  - "react-dom": "^16.12.0",
+  - "react-scripts": "3.4.0"
+  - так же тут определены скрипты, которые можно запускать так: npm run <Имя скрипта>
+    например npm run start Или npm start, эта команда запустит команду "react-scripts start", которая стартует development server, скомпилирует код, соптимизирует код
+    когда будем готовы деплоить приложение, запустим mpn built, не запуская development server, но вместо этого получим оптимизированный код в папке, на этом этапе все происходит в памяти, не увидим скомпилированный код.
+- папка node_modules - хранит все зависимости и подзавиисмости.
+- папка public -
+  index.html, других html страничек не будет, куда будет вставлять
+  manifest.json - метаданные о нашем приложении
+- папка source -
+  index.js - имеет доступ к root элементу нашего DOM из html файла, и рендерит приложение с помощью метода render(), рендерит элемент App, который импортируем из файла ./App, расширение \*.js можно опускать
+  App.js - тут наш единственный на данный момент компонент.
+  App.css - стили
+  serviceWorker.js - делает прекэш наших скриптов
+  App.test.js -позволяет создавать тесты для приложения
 
 ```js
 ReactDOM.render(<App />, document.getElementById('root'));
-//вместо компонента мы можем рендерить html элементы 
+//вместо компонента мы можем рендерить html элементы
 ReactDOM.render(<h1>Test</h1>, document.getElementById('root'));
-//можем рендерить сколько угодно html компонент, только это не будет react приложением, обычно принято рендерить 1 компонент из файла App.js
+//можем рендерить сколько угодно html компонент, только это не будет react приложением,
+//обычно принято рендерить 1 компонент из файла App.js
 ```
 
+### Component Basics
+
 из чего состоит React компонент
- * class App extends Component {}
-	Component тут из библиотеки React, которую заимпортили выше.
- * класс имеет 1 метод render. 
-	!Каждый компонент должен возвращать или рендерить некий html код, который можно отрендерить в DOM на экране.
- * export default app - чтоб потом этот компонент могли импортить
- * то, что возвращается компонентом - JSX, не HTML, но очень похоже, это автоматом транспайлится в js
 
+- class App extends Component {}
+  Component тут из библиотеки React, которую заимпортили выше.
+- класс имеет 1 метод render.
+  !Каждый компонент должен возвращать или рендерить некий html код, который можно отрендерить в DOM на экране.
+- export default app - чтоб потом этот компонент могли импортить
+- то, что возвращается компонентом - JSX, не HTML, но очень похоже, это автоматом транспайлится в js
 
-### JSX
+### **JSX**
+
+JSX - JavaScript HTML, it's literally HTML inside js
 
 ```js
-//вместо 
-  return (
-    <div className="App"> //именно className
-      <h1>Hi</h1>
-    </div>
-  );
+//вместо
+return (
+  <div className="App">
+    {' '}
+     <-- именно className -->
+    <h1>Hi</h1>
+  </div>
+);
 //можно сделать так
-  return React.createElement('div',null,'h1', 'Hi, I\'m a React App!!!')
-  //createElement миинимум имеет 3 аргумента
-  //первый аргумент - элемент, который рендерим в DOM, компонент или html элемент
-  //второй - конфигурация, это js объект, если конфинурации нет, null
-  //далее любое кол-во потомков первого элемента через зпт
-  //h1 интерпретировался как текст, чтобы h1 был элементом сделаем так:
-  return React.createElement('div',null, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
-  //а чтобы добавить css вместо null пишем className
-  return React.createElement('div',{className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
+return React.createElement('div', null, 'h1', "Hi, I'm a React App!!!");
+//createElement миинимум имеет 3 аргумента
+//первый аргумент - элемент, который рендерим в DOM, компонент или html элемент
+//второй - конфигурация, это js объект, если конфинурации нет, null
+//далее любое кол-во потомков первого элемента через зпт
+//h1 интерпретировался как текст, чтобы h1 был элементом сделаем так:
+
+return React.createElement(
+  'div',
+  null,
+  React.createElement('h1', null, "Hi, I'm a React App!!!")
+);
+//а чтобы добавить css вместо null пишем className
+return React.createElement(
+  'div',
+  { className: 'App' },
+  React.createElement('h1', null, "Hi, I'm a React App!!!")
+);
 ```
 
 ### JSX Restrictions
 
-* className, потому что слово class уже зарезервировано в js, где-то может не работать слово class
-* JSX вырадение должно иметь 1 корневой элемент, так нельзя:
+- className, because "class" is reserved in js
+- JSX expression should have only 1 root element,
+
+example with error:
+
 ```js
-  return (
-    <div className="App"> //именно className
-      <h1>Hi</h1>
-	</div>
-	<h1>Another heading</h1>
+return (
+  <div class="App"> //should be className
+    <h1>Hi</h1>
+  </div>
+  <h1>Another heading</h1>
   );
-  ```
+```
 
+correct example:
 
-  ### Create Functioncal Component
+```js
+return (
+  <div>
+    <div className="App">
+      <h1>Hi</h1>
+    </div>
+    <h1>Another heading</h1>
+  </div>
+);
+```
 
-  при импорте имя компонента выбираем сами, но обязательно с большой буквы.
-  ```js
-  import Person from './Person/Person'
-  ```
-  
-  
- props - объект, дающий доступ к атрибутам, которым мы передали в наш компонент.
+### Create Functioncal Component
 
-специальное свойство  children - зарезервированное слово, относится ко всему, что между открывающим и закрываюзим тегом компонента
+при импорте имя компонента выбираем сами, но обязательно с большой буквы.
 
-<Person name="Manu" age="29" >My Hobbies: Racing</Person>
+```js
+import Person from './Person/Person';
+```
 
-в данном случае это: "My Hobbies: Racing"
-это может быть не только текст, может быть html
+### **Working with Props**
 
+- props - object which give access to attributes which we pass to our component
 
+### **The Concept of "Composition" ("children props")**
 
+- **composition** - approach to build an app from smaller building blocks
 
-Если нам не нужна информация извне, а мы хотим хранить информацию внутри компонента, и менять её внутри,
-то можем использовать свойства класса
-В классах, которые экстендят Component есть зарезервированное слово state. Но такого нет в функциях. State использовать осторожно, лучше использовать фунциональные компоненты.
+In some companent it's possible to pass content between opening and closing tags of this compomemt
 
-  state = { //зарезервированное слово
-    persons: [
-      {name: 'Max', age: 28},
-      {name: 'Manu', age: 29},
-      {name: 'Stephanie', age: 26}
-    ]
-  }
+- **children** - reserved word, related to everything between opening and closing tags.
+- **Card** - common name for components which serve just as shell around any other content
 
-заменяем
-    <Person name="Max" age="28" />
-на
-    <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+```js
+import './Card.css';
+
+function Card(props) {
+  const classes = 'card ' + props.className;
+
+  return <div className={classes}>{props.children}</div>;
+}
+
+export default Card;
+```
+
+## **React State & Working with Events**
