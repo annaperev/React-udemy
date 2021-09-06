@@ -605,3 +605,18 @@ const ExpenseItem = (props) => {
 ```
 
 We don't call function here `onClick={clickHandler}`, we just point at it. If we make a call `onClick={clickHandler()}` js will excecute clickHandler function when this line of code is being parsed, it happeneds when JSX code is returned. That would be too early. To excecute clickHandler when we click the button we should use the pointer (whithout parenthesis)
+
+React hoock
+
+start from 'use\*'
+must be called inside React component, not outside, not inside nested functions
+
+```js
+const [title, setTitle] = useState(props.title);
+```
+
+useState() - registered some value for their copmponent (specific instance) where it was called
+useState(props.title) - we set an initial value. U seState() always returnes array with 2 values:
+
+- title - value itself, a pointer at that managed value, initially at value stored at props.title
+- setTitle - updating function, a function which we will later call
