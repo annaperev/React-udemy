@@ -4,9 +4,9 @@
 
 [Next-Generation JavaScript](#next-generation-javascript)
 
-[React Basics & Working With Components](#React-Basics-and-Working-With-Components)
+[React Basics & Working With Components](#react-basics-and-working-with-components)
 
-[React State & Working with Events](#React-State-&-Working-with-Events)
+[React State & Working with Events](#react-state-and-working-with-events)
 
 ## **Getting Started**
 
@@ -561,4 +561,47 @@ function Card(props) {
 export default Card;
 ```
 
-## **React State & Working with Events**
+### **Arrow functions**
+
+just Function
+
+```js
+function App() {
+  ...
+  return ()
+}
+```
+
+arrow Function
+
+```js
+const App = () => {
+  ...
+  return ()
+}
+```
+
+### **Imperative approach**
+
+**Declarative approach** - describing the sequense of actions which are necessary to reach the goal
+
+**Imperative approach** - describing the end goal and React define the way in which js goes to the goal
+
+## **React State and Working with Events**
+
+### **Listening to Events & Working with Event Handlers**
+
+```js
+const ExpenseItem = (props) => {
+  const clickHandler = () => {
+    console.log('Clicked!!!!!');
+  };
+  return (
+    <Card className="expense-item">
+      <button onClick={clickHandler}>Change title</button>
+    </Card>
+  );
+};
+```
+
+We don't call function here `onClick={clickHandler}`, we just point at it. If we make a call `onClick={clickHandler()}` js will excecute clickHandler function when this line of code is being parsed, it happeneds when JSX code is returned. That would be too early. To excecute clickHandler when we click the button we should use the pointer (whithout parenthesis)
