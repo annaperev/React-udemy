@@ -620,3 +620,273 @@ useState(props.title) - we set an initial value. U seState() always returnes arr
 
 - title - value itself, a pointer at that managed value, initially at value stored at props.title
 - setTitle - updating function, a function which we will later call
+
+## **Working with Multiple States**
+
+**Multiple States**
+
+```js
+import { useState } from 'react';
+import './ExpenseForm.css';
+
+const ExpenseForm = () => {
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
+
+  const titleChangeHandler = (event) => {
+    setEnteredTitle(event.target.value);
+  };
+
+  const amountChangeHandler = (event) => {
+    setEnteredAmount(event.target.value);
+  };
+
+  const dateChangeHandler = (event) => {
+    setEnteredDate(event.target.value);
+  };
+
+  return (
+    <form>
+      <div className="new-expense__controls">
+        <div className="nex-expense__control">
+          <label>Title</label>
+          <input type="text" onChange={titleChangeHandler} />
+        </div>
+        <div className="nex-expense__control">
+          <label>Amount</label>
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            onChange={amountChangeHandler}
+          />
+        </div>
+        <div className="nex-expense__control">
+          <label>Date</label>
+          <input
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
+            onChange={dateChangeHandler}
+          />
+        </div>
+      </div>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>
+      </div>
+    </form>
+  );
+};
+
+export default ExpenseForm;
+```
+
+**One State Instead**
+
+```js
+import { useState } from 'react';
+import './ExpenseForm.css';
+
+const ExpenseForm = () => {
+  const [userInput, setUserInput] = useState({
+    enteredTitle: '',
+    enteredAmount: '',
+    enteredDate: '',
+  });
+
+  const titleChangeHandler = (event) => {
+    setUserInput({
+      ...userInput,
+      enteredTitle: event.target.value,
+    });
+  };
+
+  const amountChangeHandler = (event) => {
+    setUserInput({
+      ...userInput,
+      enteredAmount: event.target.value,
+    });
+  };
+
+  const dateChangeHandler = (event) => {
+    setUserInput({
+      ...userInput,
+      enteredDate: event.target.value,
+    });
+  };
+
+  return (
+    <form>
+      <div className="new-expense__controls">
+        <div className="nex-expense__control">
+          <label>Title</label>
+          <input type="text" onChange={titleChangeHandler} />
+        </div>
+        <div className="nex-expense__control">
+          <label>Amount</label>
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            onChange={amountChangeHandler}
+          />
+        </div>
+        <div className="nex-expense__control">
+          <label>Date</label>
+          <input
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
+            onChange={dateChangeHandler}
+          />
+        </div>
+      </div>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>
+      </div>
+    </form>
+  );
+};
+
+export default ExpenseForm;
+```
+
+**Updating State That DependsOn The Previous State** whenevery we update state and we depend on the previous state you should
+
+React schedules states update, it doesn't perform them instantly. Theoretically, if we schedule many state updates simultaneously, we could be depending on outdated or incorrect state snapshots using the previous approach. Using the next approach react guarantee the latest state snapshot
+
+```js
+import { useState } from 'react';
+import './ExpenseForm.css';
+
+const ExpenseForm = () => {
+  const [userInput, setUserInput] = useState({
+    enteredTitle: '',
+    enteredAmount: '',
+    enteredDate: '',
+  });
+
+  const titleChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: event.target.value };
+    });
+  };
+
+  const amountChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredAmount: event.target.value };
+    });
+  };
+
+  const dateChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredDate: event.target.value };
+    });
+  };
+
+  return (
+    <form>
+      <div className="new-expense__controls">
+        <div className="nex-expense__control">
+          <label>Title</label>
+          <input type="text" onChange={titleChangeHandler} />
+        </div>
+        <div className="nex-expense__control">
+          <label>Amount</label>
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            onChange={amountChangeHandler}
+          />
+        </div>
+        <div className="nex-expense__control">
+          <label>Date</label>
+          <input
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
+            onChange={dateChangeHandler}
+          />
+        </div>
+      </div>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>
+      </div>
+    </form>
+  );
+};
+
+export default ExpenseForm;
+```
+
+### **Two way binding**
+
+For inputs we don't just listen to changes, but we also can pass a new value back into the input
+We add property `value`
+
+```js
+<input type="text" value={enteredAmount} onChange={titleChangeHandler} />
+```
+
+### **Child-to-Parent Component Communication (Bottom-up)**
+
+ParentComponent
+
+```js
+const ParentComponent = () => {
+  const saveExpenseDataHandler = (enteredExpenseData) => {
+    const expenseData = {
+      ...enteredExpenseData,
+      id: Math.random().toString(),
+    };
+    console.log(expenseData);
+  };
+
+  return (
+    <div className="new-expense">
+      <ChildComponent onSaveExpenseData={saveExpenseDataHandler} />
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+ChildComponent
+
+```js
+const ChildComponent = (props) => {
+  const submitHandler = (event) => {
+    event.preventDefault(); // to prevent updating the page
+
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+    };
+
+    props.onSaveExpenseData(expenseData);
+  };
+
+  return (
+    <form onSubmit={submitHandler}>
+      <div className="new-expense__controls">
+        <div className="nex-expense__control">
+          <label>Title</label>
+          <input type="text" value={enteredTitle} />
+        </div>
+        <div className="nex-expense__control">
+          <label>Amount</label>
+          <input type="number" min="0.01" step="0.01" value={enteredAmount} />
+        </div>
+      </div>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>
+      </div>
+    </form>
+  );
+};
+
+export default ChildComponent;
+```
