@@ -8,6 +8,8 @@
 
 [React State & Working with Events](#react-state-and-working-with-events)
 
+[Rendering Lists & Conditional Content](#rendering-lists-and-conditional-content)
+
 ## **Getting Started**
 
 ### **Intro**
@@ -752,7 +754,7 @@ const ExpenseForm = () => {
 export default ExpenseForm;
 ```
 
-**Updating State That DependsOn The Previous State** whenevery we update state and we depend on the previous state you should
+**Updating State That DependsOn The Previous State** whenevery we update state and we depend on the previous state you should use Lambda function with a parametr of previous state value
 
 React schedules states update, it doesn't perform them instantly. Theoretically, if we schedule many state updates simultaneously, we could be depending on outdated or incorrect state snapshots using the previous approach. Using the next approach react guarantee the latest state snapshot
 
@@ -892,4 +894,21 @@ export default ChildComponent;
 ```
 
 **Controlled component** - when the value and changes to the value are not handled in a component itself, but on a parent component
+
 **Presentational** or **Stateless** or **Dumm** component
+
+## **Rendering Lists and Conditional Content**
+
+### **Keys**
+
+```
+Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `Expenses`. See https://reactjs.org/link/warning-keys for more information.
+    at ExpenseItem (http://localhost:3001/static/js/main.chunk.js:700:19)
+    at Expenses (http://localhost:3001/main.8640a67a92b2f0b359ba.hot-update.js:37:97)
+    at div
+    at App (http://localhost:3001/static/js/main.chunk.js:230:89)
+```
+
+When we use array of elements we should define the unique key to help react identify aech element. Without the key react could mix up states of elements
