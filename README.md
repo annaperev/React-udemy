@@ -890,3 +890,6 @@ const ChildComponent = (props) => {
 
 export default ChildComponent;
 ```
+
+**Controlled component** - when the value and changes to the value are not handled in a component itself, but on a parent component
+**Presentational** or **Stateless** or **Dumm** component
