@@ -991,3 +991,7 @@ return (
   </Card>
 );
 ```
+
+## **Styling React Components**
+
+Inline styling has the highest priority
