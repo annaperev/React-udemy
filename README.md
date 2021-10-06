@@ -10,6 +10,8 @@
 
 [Rendering Lists & Conditional Content](#rendering-lists-and-conditional-content)
 
+[Styling React Components](#styling-react-components)
+
 ## **Getting Started**
 
 ### **Intro**
@@ -995,3 +997,18 @@ return (
 ## **Styling React Components**
 
 Inline styling has the highest priority
+
+https://styled-components.com/
+
+```
+npm install --save styled-components
+```
+
+This called attacked template - It's a default JavaScript feature, it's not specific to this package, not specific to react.
+
+```js
+const Button = styled.button``;
+```
+
+Button is special kind of method on this styled object.
+Button method returns a new button component.
