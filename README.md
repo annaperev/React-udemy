@@ -12,6 +12,8 @@
 
 [Styling React Components](#styling-react-components)
 
+[Debugging React App](#debugging-react-app)
+
 ## **Getting Started**
 
 ### **Intro**
@@ -1012,3 +1014,13 @@ const Button = styled.button``;
 
 Button is special kind of method on this styled object.
 Button method returns a new button component.
+
+## **Debugging React App**
+
+- fn+F12 -> Source tab -> Users../src/project file -> put breake point on the left
+
+  you can debug code that you write
+
+- React DevTools: two additional tabs
+  - Components. You can see component tree, props of each component, who render this component, hooks
+  - Profiler
