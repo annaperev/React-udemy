@@ -14,6 +14,8 @@
 
 [Debugging React App](#debugging-react-app)
 
+[Fragments, Portals and Rfs](#fragments-portals-and-rfs)
+
 ## **Getting Started**
 
 ### **Intro**
@@ -1024,3 +1026,32 @@ Button method returns a new button component.
 - React DevTools: two additional tabs
   - Components. You can see component tree, props of each component, who render this component, hooks
   - Profiler
+
+## **Fragments, Portals and Rfs**
+
+JSX Limitation
+
+- you can't return more than one root element
+
+workaround: use a native js array
+
+though we will get a warning, as React wants a key when it works with an array of jsx-elements (as well as it wants a key if you map dynamicly through a list of data and map that data to JSX elements)
+
+```js
+index.js:1 Warning: Each child in a list should have a unique "key" prop. See https://reactjs.org/link/warning-keys for more information.
+    at AddUser (http://localhost:3001/static/js/main.chunk.js:1025:103)
+    at div
+    at App
+```
+
+it's just easier to have a wrapping `<div>`
+
+- "`<div>` soup" - when you have a lot of wrapping `<div>`s
+
+instead we can you WrapperComponent with returns props.children
+
+```js
+const Wrapper = (props) => {
+  return props.childern;
+};
+```
