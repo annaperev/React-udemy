@@ -1029,7 +1029,7 @@ Button method returns a new button component.
 
 ## **Fragments, Portals and Rfs**
 
-JSX Limitation
+**JSX Limitation**
 
 - you can't return more than one root element
 
@@ -1054,4 +1054,18 @@ instead we can you WrapperComponent with returns props.children
 const Wrapper = (props) => {
   return props.childern;
 };
+```
+
+
+**REFs**
+
+
+If we access values with a 'ref' this is uncontrolled components, as their internal state (the value which is reflected in it) is not controlled by React
+TH
+```js
+          <input
+            id="username"
+            type="text"
+            ref={nameInputRef}
+          />
 ```
