@@ -16,6 +16,8 @@
 
 [Fragments, Portals and Rfs](#fragments-portals-and-rfs)
 
+[Handling Side Effect, Using reducer and Using the Context API](#handling-side-effect-using-reducer-and-using-the-context-api)
+
 ## **Getting Started**
 
 ### **Intro**
@@ -1069,3 +1071,24 @@ TH
             ref={nameInputRef}
           />
 ```
+
+
+## **Handling Side Effect, Using reducer and Using the Context API**
+
+Main job of React: render UI & react to user input 
+
+**Effect or Side Effect** - evethything else what might be happening in our application besides bringing smt onto the screen.
+
+**useEffect()** hook - special React hook. 
+```js
+useEffect(()=>{}, [])
+```
+It is called with 2 parameters. Firts: a function that should be executed AFTER every component evaluation IF the specified dependencies changed. Second: list of specified dependencied. If list is empty, function will run only once, when application starts.
+
+<br/>
+
+This will store data in browser:
+```js 
+localStorage.setItem('isLoggedIn','1');
+```
+You can see it in DevTool->Application tab-> Local storage -> choose application port and you'll see Key-Value pair
