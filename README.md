@@ -1080,17 +1080,68 @@ Main job of React: render UI & react to user input
 **Effect or Side Effect** - evethything else what might be happening in our application besides bringing smt onto the screen. It could be anything, whenever you have an action that should be executed in response to some other action. And that is where useEffect is able to help
 
 **useEffect()** hook - special React hook. 
+
 ```js
 useEffect(()=>{}, [])
 ```
 It is called with 2 parameters. Firts: a function that should be executed AFTER every component evaluation IF the specified dependencies changed. Second: list of specified dependencied. If list is empty, function will run only once, when application starts.
 
-1st parameter could return a value, which has to be a function. This ananymour arrow function is soo called **clean up function**:
+<br/>
+
+It runs after every component render cycle, including first time component was mounted:
 
 ```js
- return () => {}
+useEffect(() => {
+  console.log('EFFECT RUNNING');
+})
 ```
-This will run as a clean up process before every side effect function execution (function from 1st parameter of useEffect), also when component unmounts from the DOM, so whenever components is reused. 
+
+<br/>
+
+It runs for the first time component was mounted and rendered, but not after:
+
+```js
+useEffect(() => {
+  console.log('EFFECT RUNNING');
+}, [])
+```
+
+<br/>
+
+It runs whenever the component was re-evaluated and state **enteredPassword** was changed:
+
+```js
+useEffect(() => {
+  console.log('EFFECT RUNNING');
+}, [enteredPassword])
+```
+
+<br/>
+
+We can add **clean up function** - return value in 1st parameter, which has to be a function. Clean up function runs before function in 1st parameter as a whole runs, but **not** before the first time it runs, also when component unmounts from the DOM:
+
+```js
+useEffect(() => {
+  console.log('EFFECT RUNNING');
+  return () => {
+    console.log('EFFECT CLEANUP')
+    }
+}, [enteredPassword])
+```
+
+<br/>
+
+If we had empty array as a 2nd param, so no dependencied, we will see 'EFFECT RUNNING' once, and 'EFFECT CLEANUP' would run when the component is removed. 
+
+```js
+useEffect(() => {
+  console.log('EFFECT RUNNING');
+  return () => {
+    console.log('EFFECT CLEANUP')
+    }
+}, [])
+```
+
 
 <br/>
 
