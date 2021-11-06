@@ -1085,6 +1085,13 @@ useEffect(()=>{}, [])
 ```
 It is called with 2 parameters. Firts: a function that should be executed AFTER every component evaluation IF the specified dependencies changed. Second: list of specified dependencied. If list is empty, function will run only once, when application starts.
 
+1st parameter could return a value, which has to be a function. This ananymour arrow function is soo called **clean up function**:
+
+```js
+ return () => {}
+```
+This will run as a clean up process before every side effect function execution (function from 1st parameter of useEffect), also when component unmounts from the DOM, so whenever components is reused. 
+
 <br/>
 
 This will store data in browser:
