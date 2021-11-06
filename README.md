@@ -1077,7 +1077,7 @@ TH
 
 Main job of React: render UI & react to user input 
 
-**Effect or Side Effect** - evethything else what might be happening in our application besides bringing smt onto the screen.
+**Effect or Side Effect** - evethything else what might be happening in our application besides bringing smt onto the screen. It could be anything, whenever you have an action that should be executed in response to some other action. And that is where useEffect is able to help
 
 **useEffect()** hook - special React hook. 
 ```js
