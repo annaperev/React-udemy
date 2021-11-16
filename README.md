@@ -1079,7 +1079,7 @@ Main job of React: render UI & react to user input
 
 **Effect or Side Effect** - evethything else what might be happening in our application besides bringing smt onto the screen. It could be anything, whenever you have an action that should be executed in response to some other action. And that is where useEffect is able to help
 
-**useEffect()** hook - special React hook. 
+### **useEffect()** hook - special React hook 
 
 ```js
 useEffect(()=>{}, [])
@@ -1150,3 +1150,18 @@ This will store data in browser:
 localStorage.setItem('isLoggedIn','1');
 ```
 You can see it in DevTool->Application tab-> Local storage -> choose application port and you'll see Key-Value pair
+
+<br/>
+
+### **useReducer()** hook - is like advanced version of useState hook
+
+usefull for more complex state, like multiple states that changed together
+
+```js
+const [state, dispatchFn] = useReducer (reducerFn, initialState, initFn)
+```
+- state - the latest state snapshot
+- dispatchFn - a function that allows you to update that state snapshot. It's kinda the same ase for useState, though state updating function will work differently. Instead of just setting a new state value, you will dispatch an action, and that action will be consumed by the first argument you pass to useReducer, so-called refucerFunction
+- reducerFn - a function that triggers automatically once an action is dispatched (via dispatchFn()) - it recieves the latest state snapshot and should return the new, updated state
+- initialState - optionally you can set initial state
+- initFn
