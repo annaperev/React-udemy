@@ -324,6 +324,15 @@ console.log(name)//Max
 console.log(age)//undefined
 ```
 
+emailIsValid here is allias for variable
+```js
+  emailState = {   
+    value: '',
+    isValid: null
+    }
+  const { isValid: emailIsValid} = emailState;
+```
+
 examples for sandbox:
 
 ```js
