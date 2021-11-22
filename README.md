@@ -1174,3 +1174,12 @@ const [state, dispatchFn] = useReducer (reducerFn, initialState, initFn)
 - reducerFn - a function that triggers automatically once an action is dispatched (via dispatchFn()) - it recieves the latest state snapshot and should return the new, updated state
 - initialState - optionally you can set initial state
 - initFn
+
+
+### **React Context**
+
+props for configuration
+
+context for state management across components or posiibly across the entire app
+
+React Context is NOT optimized for high frequency changes (Redux is)
