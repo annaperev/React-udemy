@@ -1183,3 +1183,16 @@ props for configuration
 context for state management across components or posiibly across the entire app
 
 React Context is NOT optimized for high frequency changes (Redux is)
+
+
+### **Rules of Hooks**
+- Only call React Hooks in React Functions
+  - React Component Functions
+  - Custom Hooks 
+
+- Only call React Hooks at the Top Level
+  - Don’t call them in nested functions
+  - Don’t call them in any block statements
+  
+- extra, unofficial Rule for useEffect(): ALWAYS add everything you refer to
+inside of useEffect() as a dependency!
