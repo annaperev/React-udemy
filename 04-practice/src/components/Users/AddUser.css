@@ -1,0 +1,21 @@
+.add-user-label {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  align-items: left;
+  padding-left: 10px;
+}
+
+.add-user-input{
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  height: 2rem;
+  border: 1px solid #080000;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  align-items: left;
+  padding-left: 10px;
+  justify-content: center;
+  margin: 10px;
+}
